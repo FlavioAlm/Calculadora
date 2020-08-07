@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const ButtonNumber = (props) => {
-  
-  const [number, setNumber] = React.useState([]) ;
+class ButtonNumber extends Component{
 
-  function handleClick(event){
+  handleClick(event){
+    let number = this.sequence;
+
     alert("Clicou em: " + event.target.innerText);
-    var input = (event.target.innerText);
+    var input = event.target.innerText;
 
-    setNumber(number.push(input));
+    number.push(input);
 
     console.log(input);
 
@@ -16,9 +16,12 @@ const ButtonNumber = (props) => {
     console.log(number);
   };
 
-  return (
-    <button onClick={handleClick}>{props.name}</button>
-  );
+  render(){
+    return (
+      <button onClick={this.handleClick}>{this.props.name}</button>
+    );
+  }
+
 }
 
 export default ButtonNumber;
