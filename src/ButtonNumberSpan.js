@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ButtonNumber from './ButtonNumber';
 
-class ButtonSpan extends Component{
+class ButtonNumberSpan extends Component{
 
 
   render(){
@@ -52,4 +52,4 @@ class ButtonSpan extends Component{
   }
 }
 
-export default ButtonSpan;
+export default ButtonNumberSpan;
