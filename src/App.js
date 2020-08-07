@@ -1,99 +1,8 @@
 import React, { Component } from 'react';
-
-class Display extends Component{
-
-  constructor(props) {
-    super(props);
-  }
-
-  render(){
-
-    let sequence = this.props.sequence;
-    console.log(sequence);
-
-    return (
-      <textarea value={this.props.sequence} />
-    );
-  }
-}
-
-
-class ButtonEqual extends Component{
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e){
-
-    alert("Clicou em: " + e.target.innerText);
-    var input = (e.target.innerText);
-    console.log(input);
-
-    this.props.onResultChange(e.target.innerText);
-  };
-
-  render(){
-    return (
-      <button onClick={this.handleClick}>{this.props.name}</button>
-    );
-  }
-}
-
-
-class ButtonOperator extends Component{
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e){
-
-    alert("Clicou em: " + e.target.innerText);
-    var input = e.target.innerText;
-
-    console.log(input);
-
-    this.props.onOperatorChange(e.target.innerText);
-    this.props.onSequenceChange(e.target.innerText);
-  };
-
-  render(){
-    return (
-      <button onClick={this.handleClick}>{this.props.name}</button>
-    );
-  }
-
-}
-
-
-class ButtonNumber extends Component{
-
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e){
-
-    alert("Clicou em: " + e.target.innerText);
-    var input = e.target.innerText;
-
-    console.log(input);
-
-    this.props.onNumberChange(e.target.innerText);
-    this.props.onSequenceChange(e.target.innerText);
-  };
-
-  render(){
-    return (
-      <button onClick={this.handleClick}>{this.props.name}</button>
-    );
-  }
-
-}
+import Display from './Display';
+import ButtonEqual from './ButtonEqual';
+import ButtonOperator from './ButtonOperator';
+import ButtonNumber from './ButtonNumber';
 
 
 class Calculator extends Component {
@@ -155,13 +64,45 @@ class Calculator extends Component {
       <div>
         <h1> Calculadora em construção...</h1>
           <ButtonNumber 
-            name="0" 
+            name="1" 
             onNumberChange={this.handleNumberChange}
             onSequenceChange={this.handleSequenceChange} />
           <ButtonNumber 
-            name="1" 
+            name="2" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} />
+          <ButtonNumber 
+            name="3" 
             onNumberChange={this.handleNumberChange}
             onSequenceChange={this.handleSequenceChange} /><br/>
+          <ButtonNumber 
+            name="4" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} />
+          <ButtonNumber 
+            name="5" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} />
+          <ButtonNumber 
+            name="6" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} /><br/>
+          <ButtonNumber 
+            name="7" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} />
+          <ButtonNumber 
+            name="8" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} />
+          <ButtonNumber 
+            name="9" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} /><br/>
+          <ButtonNumber 
+            name="0" 
+            onNumberChange={this.handleNumberChange}
+            onSequenceChange={this.handleSequenceChange} />
           <ButtonOperator 
             name="+" 
             onOperatorChange={this.handleOperatorChange}
