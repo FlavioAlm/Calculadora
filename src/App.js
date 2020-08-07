@@ -136,6 +136,8 @@ class Calculator extends Component {
     }
 
     this.setState({result: result})
+    this.setState({sequenceInput: result})
+    this.setState({numbers: []})
 
   }
 
@@ -166,8 +168,6 @@ class Calculator extends Component {
             onSequenceChange={this.handleSequenceChange} />
           <ButtonEqual 
             name="="
-            numbers={this.numbers}
-            operator={this.operator} 
             onResultChange={this.handleResultChange}/><br/>
           <Display sequence={this.state.sequenceInput}/>
       </div>
