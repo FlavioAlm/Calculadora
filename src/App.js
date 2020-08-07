@@ -3,6 +3,7 @@ import Display from './Display';
 import ButtonEqual from './ButtonEqual';
 import ButtonOperator from './ButtonOperator';
 import ButtonNumber from './ButtonNumber';
+import ButtonSpan from './ButtonSpan';
 
 
 class Calculator extends Component {
@@ -63,44 +64,7 @@ class Calculator extends Component {
     return (
       <div>
         <h1> Calculadora em construção...</h1>
-          <ButtonNumber 
-            name="1" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} />
-          <ButtonNumber 
-            name="2" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} />
-          <ButtonNumber 
-            name="3" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} /><br/>
-          <ButtonNumber 
-            name="4" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} />
-          <ButtonNumber 
-            name="5" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} />
-          <ButtonNumber 
-            name="6" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} /><br/>
-          <ButtonNumber 
-            name="7" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} />
-          <ButtonNumber 
-            name="8" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} />
-          <ButtonNumber 
-            name="9" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} /><br/>
-          <ButtonNumber 
-            name="0" 
+          <ButtonSpan 
             onNumberChange={this.handleNumberChange}
             onSequenceChange={this.handleSequenceChange} />
           <ButtonOperator 
