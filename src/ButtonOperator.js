@@ -9,7 +9,6 @@ class ButtonOperator extends Component{
 
   handleClick(e){
 
-    alert("Clicou em: " + e.target.innerText);
     var input = e.target.innerText;
 
     console.log(input);
@@ -20,7 +19,9 @@ class ButtonOperator extends Component{
 
   render(){
     return (
-      <button onClick={this.handleClick}>{this.props.name}</button>
+      <button 
+      onClick={this.handleClick}
+      style={this.props.style}>{this.props.name}</button>
     );
   }
 
