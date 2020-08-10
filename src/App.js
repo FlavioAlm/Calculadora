@@ -64,17 +64,21 @@ class Calculator extends Component {
     let secondNumber = parseInt(this.state.secondNumber);
     let operator = this.state.operator;
     
-    if(operator==='+'){
+    switch(operator){
+      case '+':
         result = firstNumber + secondNumber
-    }
-    if(operator==='-'){
+        break
+      case '-':
         result = firstNumber - secondNumber
-    }
-    if(operator==='x'){
+        break
+      case 'x':
         result = firstNumber * secondNumber
-    }
-    if(operator==='/'){
+        break
+      case '/': 
         result = firstNumber / secondNumber
+        break
+      default:
+          console.log("error!")
     }
 
     console.log("result: "+result);
