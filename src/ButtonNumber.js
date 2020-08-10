@@ -4,8 +4,9 @@ function ButtonNumber(props){
 
   return (
     <button 
-      onClick={props.onNumberChange}
-      style={props.style}>{props.name} 
+      onClick={props.onChange}
+      style={props.style}>
+        {props.name} 
     </button>
   );
 

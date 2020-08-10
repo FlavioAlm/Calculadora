@@ -44,14 +44,31 @@ class Calculator extends Component {
       result: 0,
     };
     
+    this.handleChange = this.handleChange.bind(this);
     this.handleNumberChange = this.handleNumberChange.bind(this);
     this.handleOperatorChange = this.handleOperatorChange.bind(this);
     this.handleResultChange = this.handleResultChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
-  handleNumberChange(props){
+  handleChange(props){
     let input = props.target.innerText;
+
+    var operatorsList = ["+", "-", "x", "/"];
+    var numbersList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+    if(operatorsList.includes(input)) {
+      this.handleOperatorChange(input)
+    }
+    if(numbersList.includes(parseInt(input))) {
+      this.handleNumberChange(input)
+    }
+
+  }
+
+  handleNumberChange(props) {
+    //let input = props.target.innerText;
+    let input = props
 
     this.setState({
       firstNumber: this.state.secondNumber,
@@ -61,12 +78,12 @@ class Calculator extends Component {
 
     let oldSequence = this.state.sequenceInput;
     this.setState({sequenceInput: oldSequence + input});
-    console.log("operator: "+this.state.operator);
   }
 
   handleOperatorChange(props){
 
-    let input = props.target.innerText;
+    let input = props
+    //let input = props.target.innerText;
     this.setState({operator: input});
 
     let oldSequence = this.state.sequenceInput;
@@ -132,79 +149,52 @@ class Calculator extends Component {
           <Display 
             sequence={this.state.sequenceInput}
             style={stylesDisplay}/>
-          <ButtonNumber 
-            name="1" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
+          {[1, 2, 3].map(num => (
+            <ButtonNumber
+            key={num} 
+            name={num} 
+            onChange={this.handleChange}
             style={stylesNumber}/>
-          <ButtonNumber 
-            name="2" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
-            style={stylesNumber}/>
-          <ButtonNumber 
-            name="3" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
-            style={stylesNumber}/>
+          ))}
           <ButtonDel 
             name="C"
             reset={this.handleReset} 
             style={stylesDel}/> <br/>
 
-          <ButtonNumber 
-            name="4" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
+          {[4, 5, 6].map(num => (
+            <ButtonNumber 
+            key={num} 
+            name={num} 
+            onChange={this.handleChange}
             style={stylesNumber}/>
-          <ButtonNumber 
-            name="5" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
-            style={stylesNumber}/>
-          <ButtonNumber 
-            name="6" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
-            style={stylesNumber}/>
+          ))}
           <ButtonOperator 
             name="-" 
-            onOperatorChange={this.handleOperatorChange}
+            onChange={this.handleChange}
             style={stylesOperator}/>  <br/>
-            
-          <ButtonNumber 
-            name="7" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
+
+          {[7, 8, 9].map(num => (
+            <ButtonNumber 
+            key={num} 
+            name={num} 
+            onChange={this.handleChange}
             style={stylesNumber}/>
-          <ButtonNumber 
-            name="8" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
-            style={stylesNumber}/>
-          <ButtonNumber 
-            name="9" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
-            style={stylesNumber}/>
+          ))}
           <ButtonOperator 
             name="+" 
-            onOperatorChange={this.handleOperatorChange}
+            onChange={this.handleChange}
             style={stylesOperator}/><br/>
 
           <ButtonNumber 
             name="0" 
-            onNumberChange={this.handleNumberChange}
-            onSequenceChange={this.handleSequenceChange} 
+            onChange={this.handleChange}
             style={stylesNumber}/>
+          {["x", "/"].map(oper => (
           <ButtonOperator 
-            name="x" 
-            onOperatorChange={this.handleOperatorChange}
-            style={stylesOperator}/> 
-          <ButtonOperator 
-            name="/" 
-            onOperatorChange={this.handleOperatorChange}
+            name={oper} 
+            onChange={this.handleChange}
             style={stylesOperator}/>
+          ))} 
           <ButtonEqual 
             name="="
             onResultChange={this.handleResultChange}

@@ -4,7 +4,7 @@ function ButtonOperator(props){
   
   return (
     <button 
-      onClick={props.onOperatorChange}
+      onClick={props.onChange}
       style={props.style}>
         {props.name}
     </button>
