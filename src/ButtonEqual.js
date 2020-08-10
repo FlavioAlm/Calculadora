@@ -1,27 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class ButtonEqual extends Component{
+function ButtonEqual(props){
 
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e){
-
-    var input = (e.target.innerText);
-    console.log(input);
-
-    this.props.onResultChange(e.target.innerText);
-  };
-
-  render(){
-    return (
-      <button 
-      onClick={this.handleClick}
-      style={this.props.style}>{this.props.name}</button>
-    );
-  }
+  return (
+    <button 
+      onClick={props.onResultChange}
+      style={props.style}>
+        {props.name}
+    </button>
+  );
+  
 }
 
 export default ButtonEqual;

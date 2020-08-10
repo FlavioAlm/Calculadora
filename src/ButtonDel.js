@@ -1,15 +1,15 @@
 import React from 'react';
 
-function ButtonOperator(props){
-  
+function ButtonDel(props){
+
   return (
     <button 
-      onClick={props.onOperatorChange}
+      onClick={props.reset}
       style={props.style}>
         {props.name}
     </button>
   );
-
+  
 }
 
-export default ButtonOperator;
+export default ButtonDel;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Display from './Display';
 import ButtonEqual from './ButtonEqual';
 import ButtonOperator from './ButtonOperator';
-import Del from './Del.js'
+import ButtonDel from './ButtonDel.js'
 import ButtonNumber from './ButtonNumber';
 
 const stylesOperator = {
@@ -23,6 +23,15 @@ const stylesDel = {
   backgroundColor: 'orange',
 };
 
+const stylesDisplay = {
+  fontSize: 20,
+  backgroundColor: "#c7f3ff",
+  textAlign: "right",
+  width: 152,
+  height: 32,
+  padding: 2,
+}
+
 class Calculator extends Component {
 
   constructor(props){
@@ -36,26 +45,33 @@ class Calculator extends Component {
     };
     
     this.handleNumberChange = this.handleNumberChange.bind(this);
-    this.handleSequenceChange = this.handleSequenceChange.bind(this);
     this.handleOperatorChange = this.handleOperatorChange.bind(this);
     this.handleResultChange = this.handleResultChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
   handleNumberChange(props){
+    let input = props.target.innerText;
+
     this.setState({
       firstNumber: this.state.secondNumber,
-      secondNumber: parseInt(props),
+      secondNumber: parseInt(input),
     });
     console.log(this.state.firstNumber)
+
+    let oldSequence = this.state.sequenceInput;
+    this.setState({sequenceInput: oldSequence + input});
+    console.log("operator: "+this.state.operator);
   }
 
-  handleSequenceChange(props){
-    let input = this.state.sequenceInput;
-    this.setState({sequenceInput: input+ props})
-  }
   handleOperatorChange(props){
-    this.setState({operator: props})
+
+    let input = props.target.innerText;
+    this.setState({operator: input});
+
+    let oldSequence = this.state.sequenceInput;
+    this.setState({sequenceInput: oldSequence + input});
+    console.log("operator: "+this.state.operator);
   }
 
   handleResultChange(props){
@@ -113,7 +129,9 @@ class Calculator extends Component {
     return (
       <div>
         <h1> Calculator</h1>
-          <Display sequence={this.state.sequenceInput}/>
+          <Display 
+            sequence={this.state.sequenceInput}
+            style={stylesDisplay}/>
           <ButtonNumber 
             name="1" 
             onNumberChange={this.handleNumberChange}
@@ -129,8 +147,8 @@ class Calculator extends Component {
             onNumberChange={this.handleNumberChange}
             onSequenceChange={this.handleSequenceChange} 
             style={stylesNumber}/>
-          <Del 
-            name="DEL"
+          <ButtonDel 
+            name="C"
             reset={this.handleReset} 
             style={stylesDel}/> <br/>
 
@@ -152,7 +170,6 @@ class Calculator extends Component {
           <ButtonOperator 
             name="-" 
             onOperatorChange={this.handleOperatorChange}
-            onSequenceChange={this.handleSequenceChange} 
             style={stylesOperator}/>  <br/>
             
           <ButtonNumber 
@@ -173,7 +190,6 @@ class Calculator extends Component {
           <ButtonOperator 
             name="+" 
             onOperatorChange={this.handleOperatorChange}
-            onSequenceChange={this.handleSequenceChange} 
             style={stylesOperator}/><br/>
 
           <ButtonNumber 
@@ -184,18 +200,15 @@ class Calculator extends Component {
           <ButtonOperator 
             name="x" 
             onOperatorChange={this.handleOperatorChange}
-            onSequenceChange={this.handleSequenceChange} 
             style={stylesOperator}/> 
           <ButtonOperator 
             name="/" 
             onOperatorChange={this.handleOperatorChange}
-            onSequenceChange={this.handleSequenceChange} 
             style={stylesOperator}/>
           <ButtonEqual 
             name="="
             onResultChange={this.handleResultChange}
             style={stylesOperator}/>
-
       </div>
     );
   }
