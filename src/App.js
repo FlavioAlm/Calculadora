@@ -38,8 +38,8 @@ class Calculator extends Component {
     super(props);
     this.state={
       sequenceInput: '',
-      firstNumber: 0,
-      secondNumber: 0,
+      firstNumber: "0",
+      secondNumber: "0",
       operator: '',
       result: 0,
     };
@@ -67,14 +67,19 @@ class Calculator extends Component {
   }
 
   handleNumberChange(props) {
-    //let input = props.target.innerText;
     let input = props
 
-    this.setState({
-      firstNumber: this.state.secondNumber,
-      secondNumber: parseInt(input),
-    });
-    console.log(this.state.firstNumber)
+    console.log("firstNumber: " + this.state.firstNumber[0])
+    if(this.state.firstNumber[0]=="0"){
+      this.setState({
+        firstNumber: input,
+      })
+    } else {
+      this.setState({
+        firstNumber: this.state.firstNumber+input
+      })
+    }
+    console.log("firstNumber: " + this.state.firstNumber)
 
     let oldSequence = this.state.sequenceInput;
     this.setState({sequenceInput: oldSequence + input});
@@ -83,8 +88,12 @@ class Calculator extends Component {
   handleOperatorChange(props){
 
     let input = props
-    //let input = props.target.innerText;
     this.setState({operator: input});
+
+    this.setState({
+      firstNumber: "0",
+      secondNumber: this.state.firstNumber,
+    });
 
     let oldSequence = this.state.sequenceInput;
     this.setState({sequenceInput: oldSequence + input});
@@ -99,16 +108,16 @@ class Calculator extends Component {
     
     switch(operator){
       case '+':
-        result = firstNumber + secondNumber
+        result = secondNumber + firstNumber
         break
       case '-':
-        result = firstNumber - secondNumber
+        result = secondNumber - firstNumber
         break
       case 'x':
-        result = firstNumber * secondNumber
+        result = secondNumber * firstNumber
         break
       case '/': 
-        result = firstNumber / secondNumber
+        result = secondNumber / firstNumber
         break
       default:
           console.log("error!")
@@ -119,8 +128,7 @@ class Calculator extends Component {
     this.setState({result: result})
     this.setState({sequenceInput: result})
     this.setState({
-      firstNumber: this.state.secondNumber,
-      secondNumber: result,
+      firstNumber: result,
     })
 
   }
@@ -139,7 +147,7 @@ class Calculator extends Component {
     const numbers = [this.state.firstNumber, this.state.secondNumber];
     const result = this.state.result;
 
-    console.log(`numbers: ${numbers[0]}${numbers[1]}`);
+    console.log(`number0: ${numbers[0]} number1: ${numbers[1]}`);
     console.log(`result: ${result}`);
     console.log(`sequence: ${sequenceInput}`);
 
