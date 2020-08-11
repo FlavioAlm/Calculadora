@@ -6,6 +6,7 @@ import ButtonDel from './ButtonDel.js'
 import ButtonNumber from './ButtonNumber';
 import './myStyles.css';
 
+
 class Calculator extends Component {
   constructor(props){
     super(props);
@@ -17,30 +18,14 @@ class Calculator extends Component {
       result: 0,
     };
     
-    this.handleChange = this.handleChange.bind(this);
     this.handleNumberChange = this.handleNumberChange.bind(this);
     this.handleOperatorChange = this.handleOperatorChange.bind(this);
     this.handleResultChange = this.handleResultChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
   }
 
-  handleChange(props){
-    let input = props.target.innerText;
-
-    var operatorsList = ["+", "-", "x", "/"];
-    var numbersList = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-    if(operatorsList.includes(input)) {
-      this.handleOperatorChange(input)
-    }
-    if(numbersList.includes(parseInt(input))) {
-      this.handleNumberChange(input)
-    }
-
-  }
-
   handleNumberChange(props) {
-    let input = props
+    let input = props.target.innerText;
 
     console.log("firstNumber: " + this.state.firstNumber[0])
     if(this.state.firstNumber[0]==="0"){
@@ -59,10 +44,9 @@ class Calculator extends Component {
   }
 
   handleOperatorChange(props){
+    let input = props.target.innerText;
 
-    let input = props
     this.setState({operator: input});
-
     this.setState({
       firstNumber: "0",
       secondNumber: this.state.firstNumber,
@@ -125,47 +109,47 @@ class Calculator extends Component {
     console.log(`sequence: ${sequenceInput}`);
 
     return (
-      <div>
+      <div className>
           <Display 
             sequence={this.state.sequenceInput}/>
           {[1, 2, 3].map(num => (
             <ButtonNumber
             key={num} 
             name={num} 
-            onChange={this.handleChange}/>
+            onChange={this.handleNumberChange}/>
           ))}
           <ButtonDel 
             name="C"
-            onClick={this.props.onClick} /> <br/>
+            onClick={this.handleReset} /> <br/>
 
           {[4, 5, 6].map(num => (
             <ButtonNumber 
             key={num} 
             name={num} 
-            onChange={this.handleChange}/>
+            onChange={this.handleNumberChange}/>
           ))}
           <ButtonOperator 
             name="-" 
-            onChange={this.handleChange}/>  <br/>
+            onChange={this.handleOperatorChange}/>  <br/>
 
           {[7, 8, 9].map(num => (
             <ButtonNumber 
             key={num} 
             name={num} 
-            onChange={this.handleChange}/>
+            onChange={this.handleNumberChange}/>
           ))}
           <ButtonOperator 
             name="+" 
-            onChange={this.handleChange}/><br/>
+            onChange={this.handleOperatorChange}/><br/>
 
           <ButtonNumber 
             name="0" 
-            onChange={this.handleChange}/>
+            onChange={this.handleNumberChange}/>
           {["x", "/"].map(oper => (
           <ButtonOperator
             key={oper} 
             name={oper} 
-            onChange={this.handleChange}/>
+            onChange={this.handleOperatorChange}/>
           ))} 
           <ButtonEqual 
             name="="
