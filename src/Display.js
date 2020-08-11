@@ -1,4 +1,5 @@
 import React from 'react';
+import './myStyles.css';
 
 const Display = (props) => (
     <div>
@@ -7,7 +8,7 @@ const Display = (props) => (
         type="text" 
         value={props.sequence}
         placeholder="0"
-        style={props.style} />
+        className='stylesDisplay' />
     </div>
   
 );

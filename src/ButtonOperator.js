@@ -1,11 +1,12 @@
 import React from 'react';
+import './myStyles.css';
 
 function ButtonOperator(props){
   
   return (
     <button 
       onClick={props.onChange}
-      style={props.style}>
+      className='stylesOperator'>
         {props.name}
     </button>
   );

@@ -1,11 +1,12 @@
 import React from 'react';
+import './myStyles.css';
 
 function ButtonDel(props){
 
   return (
     <button 
-      onClick={props.reset}
-      style={props.style}>
+      onClick={props.onClick} 
+      className='stylesDel'>
         {props.name}
     </button>
   );

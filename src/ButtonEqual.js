@@ -1,11 +1,12 @@
 import React from 'react';
+import './myStyles.css';
 
 function ButtonEqual(props){
 
   return (
     <button 
       onClick={props.onResultChange}
-      style={props.style}>
+      className='stylesOperator'>
         {props.name}
     </button>
   );

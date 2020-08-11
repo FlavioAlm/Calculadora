@@ -1,11 +1,12 @@
 import React from 'react';
+import './myStyles.css';
 
 function ButtonNumber(props){
 
   return (
     <button 
       onClick={props.onChange}
-      style={props.style}>
+      className='stylesNumber'>
         {props.name} 
     </button>
   );
