@@ -4,6 +4,7 @@ import ButtonEqual from './ButtonEqual';
 import ButtonOperator from './ButtonOperator';
 import ButtonDel from './ButtonDel.js'
 import ButtonNumber from './ButtonNumber';
+import CalcName from './CalcName';
 import './myStyles.css';
 
 
@@ -109,11 +110,13 @@ class Calculator extends Component {
     console.log(`sequence: ${sequenceInput}`);
 
     return (
-      <div className>
+      <div className='body'>
+          <CalcName name={"Calculator"}/>
           <Display 
             sequence={this.state.sequenceInput}/>
-          {[1, 2, 3].map(num => (
-            <ButtonNumber
+
+          {[7, 8, 9].map(num => (
+            <ButtonNumber 
             key={num} 
             name={num} 
             onChange={this.handleNumberChange}/>
@@ -132,8 +135,8 @@ class Calculator extends Component {
             name="-" 
             onChange={this.handleOperatorChange}/>  <br/>
 
-          {[7, 8, 9].map(num => (
-            <ButtonNumber 
+          {[1, 2, 3].map(num => (
+            <ButtonNumber
             key={num} 
             name={num} 
             onChange={this.handleNumberChange}/>
@@ -142,15 +145,16 @@ class Calculator extends Component {
             name="+" 
             onChange={this.handleOperatorChange}/><br/>
 
+
+          <ButtonOperator 
+            name="x" 
+            onChange={this.handleOperatorChange}/>
           <ButtonNumber 
             name="0" 
             onChange={this.handleNumberChange}/>
-          {["x", "/"].map(oper => (
-          <ButtonOperator
-            key={oper} 
-            name={oper} 
+          <ButtonOperator 
+            name="/" 
             onChange={this.handleOperatorChange}/>
-          ))} 
           <ButtonEqual 
             name="="
             onResultChange={this.handleResultChange}/>

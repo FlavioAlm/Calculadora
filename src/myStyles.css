@@ -1,33 +1,47 @@
 .stylesOperator {
-  width: 50px; 
-  height: 50px; 
+  font-size: 20px;
+  width: 80px; 
+  height: 80px; 
   background-color: #f2b6d8;
+  border-style: groove;
 }
 
 .stylesNumber {
-  width: 50px;
-  height: 50px;
+  font-size: 20px;
+  width: 80px;
+  height: 80px;
   background-color: lightblue;
+  border-style: groove;
 }
 
 .stylesDel {
-  width: 50px; 
-  height: 50px; 
+  font-size: 20px;
+  width: 80px; 
+  height: 80px; 
   background-color: orange;
+  border-style: groove;
 }
 
 .stylesDisplay {
-  font-size: 28px;
+  font-size: 35px;
   background-color: #c7f3ff;
   text-align: right;
-  width: 192.4px;
-  height: 50px;
+  width: 312px;
+  height: 80px;
+  border-style: groove;
+}
+
+.stylesName {
+  font-size: 18px;
+  background-color: #c7f3ff;
+  text-align: left;
+  width: 312px;
+  height: 25px;
+  border-style: groove;
 }
 
 .body {
-  width: 300px;
-  margin: 50% auto;
-  background-color: #FF9500;
-  padding: 0px 20px 20px 20px;
-  border: 10px black;
+  width: 50%;
+  margin: 30% auto;
+  padding: 5px 5px 5px 5px;
 }
