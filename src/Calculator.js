@@ -27,39 +27,52 @@ class Calculator extends Component {
 
   handleNumberChange(props) {
     let input = props.target.innerText;
-
-    console.log("firstNumber: " + this.state.firstNumber[0])
-    if(this.state.firstNumber[0]==="0"){
-      this.setState({
-        firstNumber: input,
-      })
-    } else {
-      this.setState({
-        firstNumber: this.state.firstNumber+input
-      })
-    }
-    console.log("firstNumber: " + this.state.firstNumber)
-
     let oldSequence = this.state.sequenceInput;
-    this.setState({sequenceInput: oldSequence + input});
+
+    if (this.state.firstNumber.length < 5) {
+      if(this.state.firstNumber[0]==="0"){
+        this.setState({
+          firstNumber: input,
+        })
+      } else {
+        this.setState({
+          firstNumber: this.state.firstNumber+input
+        })
+      }
+  
+      this.setState({sequenceInput: oldSequence + input});
+    }
   }
 
   handleOperatorChange(props){
-    let input = props.target.innerText;
-
-    this.setState({operator: input});
-    this.setState({
-      firstNumber: "0",
-      secondNumber: this.state.firstNumber,
-    });
-
+    let newInput = props.target.innerText;
     let oldSequence = this.state.sequenceInput;
-    this.setState({sequenceInput: oldSequence + input});
-    console.log("operator: "+this.state.operator);
+    let lastInput = this.state.sequenceInput.slice(-1);
+    let restInput = this.state.sequenceInput.slice(0,-1);
+
+    if (this.state.firstNumber === "0" 
+        & this.state.secondNumber === "0"){
+      this.setState({operator: newInput});
+      this.setState({sequenceInput: "0" + newInput});
+      this.setState({
+        firstNumber: "0",
+        secondNumber: this.state.firstNumber,
+      });
+    } else if (!['+', '-', '×', '÷'].includes(lastInput)) {
+      this.setState({operator: newInput});
+      this.setState({
+        firstNumber: "0",
+        secondNumber: this.state.firstNumber,
+      });
+      this.setState({sequenceInput: oldSequence + newInput});
+    } else {
+      this.setState({operator: newInput});
+      this.setState({sequenceInput: restInput + newInput })
+    }
   }
 
-  handleResultChange(props){
-    let result = this.state.result;
+  handleResultChange(){
+    let result = 0;
     let firstNumber = parseInt(this.state.firstNumber);
     let secondNumber = parseInt(this.state.secondNumber);
     let operator = this.state.operator;
@@ -81,10 +94,8 @@ class Calculator extends Component {
           console.log("error!")
     }
 
-    console.log("result: "+result);
-
     this.setState({result: result})
-    this.setState({sequenceInput: result})
+    this.setState({sequenceInput: result.toString()})
     this.setState({
       firstNumber: result,
     })
@@ -101,13 +112,6 @@ class Calculator extends Component {
   }
 
   render(){
-    const sequenceInput = this.state.sequenceInput;
-    const numbers = [this.state.firstNumber, this.state.secondNumber];
-    const result = this.state.result;
-
-    console.log(`number0: ${numbers[0]} number1: ${numbers[1]}`);
-    console.log(`result: ${result}`);
-    console.log(`sequence: ${sequenceInput}`);
 
     return (
       <div className>

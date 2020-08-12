@@ -4,11 +4,9 @@ import Calculator from './Calculator.js';
 class App extends Component {
  
   render() {
-    console.log("key: " + this.props.key);
     return (
       <div>
-        <Calculator 
-          key={this.props.key} 
+        <Calculator  
           onClick={this.props.onClick}/>
       </div>
     );
