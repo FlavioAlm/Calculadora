@@ -110,8 +110,8 @@ class Calculator extends Component {
     console.log(`sequence: ${sequenceInput}`);
 
     return (
-      <div className='body'>
-          <CalcName name={"Calculator"}/>
+      <div className>
+          <CalcName name={" Calculator"}/>
           <Display 
             sequence={this.state.sequenceInput}/>
 
