@@ -71,10 +71,10 @@ class Calculator extends Component {
       case '-':
         result = secondNumber - firstNumber
         break
-      case 'x':
+      case '×':
         result = secondNumber * firstNumber
         break
-      case '/': 
+      case '÷': 
         result = secondNumber / firstNumber
         break
       default:
@@ -147,13 +147,13 @@ class Calculator extends Component {
 
 
           <ButtonOperator 
-            name="x" 
+            name="×" 
             onChange={this.handleOperatorChange}/>
           <ButtonNumber 
             name="0" 
             onChange={this.handleNumberChange}/>
           <ButtonOperator 
-            name="/" 
+            name="÷" 
             onChange={this.handleOperatorChange}/>
           <ButtonEqual 
             name="="
