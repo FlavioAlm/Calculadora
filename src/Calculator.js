@@ -23,29 +23,44 @@ class Calculator extends Component {
     this.handleOperatorChange = this.handleOperatorChange.bind(this);
     this.handleResultChange = this.handleResultChange.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.useNumberChange = this.useNumberChange.bind(this);
+    this.useOperatorChange = this.useOperatorChange.bind(this);
+  }
+
+  handleChange() {
   }
 
   handleNumberChange(props) {
     let input = props.target.innerText;
+    this.useNumberChange(input);
+  }
+
+  useNumberChange(props) {
     let oldSequence = this.state.sequenceInput;
 
     if (this.state.firstNumber.length < 5) {
       if(this.state.firstNumber[0]==="0"){
         this.setState({
-          firstNumber: input,
+          firstNumber: props,
         })
       } else {
         this.setState({
-          firstNumber: this.state.firstNumber+input
+          firstNumber: this.state.firstNumber+props
         })
       }
   
-      this.setState({sequenceInput: oldSequence + input});
+      this.setState({sequenceInput: oldSequence + props});
     }
   }
 
-  handleOperatorChange(props){
-    let newInput = props.target.innerText;
+  handleOperatorChange(props) {
+    let input = props.target.innerText;
+    this.useOperatorChange(input)
+  }
+
+  useOperatorChange(newInput) {
     let oldSequence = this.state.sequenceInput;
     let lastInput = this.state.sequenceInput.slice(-1);
     let restInput = this.state.sequenceInput.slice(0,-1);
@@ -71,7 +86,7 @@ class Calculator extends Component {
     }
   }
 
-  handleResultChange(){
+  handleResultChange() {
     let result = 0;
     let firstNumber = parseInt(this.state.firstNumber);
     let secondNumber = parseInt(this.state.secondNumber);
@@ -87,7 +102,13 @@ class Calculator extends Component {
       case '×':
         result = secondNumber * firstNumber
         break
+      case '*':
+        result = secondNumber * firstNumber
+        break
       case '÷': 
+        result = secondNumber / firstNumber
+        break
+      case '/': 
         result = secondNumber / firstNumber
         break
       default:
@@ -99,6 +120,34 @@ class Calculator extends Component {
     this.setState({
       firstNumber: result,
     })
+
+  }
+
+  handleKeyPress(props) {
+    var algarism = ["0","1", "2", "3", "4", "5", "6", "7", "8", "9"] 
+    var operator = ["+" , "-" , "*", "/"] 
+
+    let input = props.key.slice(-1)
+    
+    let isValidInput = [...algarism, ...operator].includes(input)
+    let isValidNumber = algarism.includes(input)
+
+    console.log("Input: " + input)
+    console.log("isValidInput: " +  isValidInput)
+    console.log("isValidNumber: " +  isValidNumber)
+
+    if (isValidInput) {
+      if(isValidNumber){
+        this.useNumberChange(input)
+      } else {
+        this.useOperatorChange(input)
+      }
+    } else if (props.key === "=" || props.key === "Enter") {
+        console.log("ok: " + props.key)
+        this.handleResultChange()
+    } else {
+      alert("Please, enter with a number or an operator")
+    }
 
   }
 
@@ -118,13 +167,17 @@ class Calculator extends Component {
           <CalcName 
             name={"Calculator"} />
           <Display 
-            sequence={this.state.sequenceInput} />
+            sequence={this.state.sequenceInput}
+            onKeyPress={this.handleKeyPress}
+            onChange={this.handleChange}
+          />
 
           {[7, 8, 9].map(num => (
-            <ButtonNumber 
+          <ButtonNumber 
             key={num} 
             name={num} 
-            onChange={this.handleNumberChange}/>
+            onChange={this.handleNumberChange}
+            onKeyPress={this.handleKeyPress}/>
           ))}
           <ButtonDel 
             key="C" 

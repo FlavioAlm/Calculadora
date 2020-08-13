@@ -6,6 +6,7 @@ function ButtonNumber(props){
   return (
     <div 
       onClick={props.onChange}
+      onKeyPress={props.onKeyPress}
       className='box'>
         {props.name} 
     </div>
