@@ -4,11 +4,11 @@ import './myStyles.css';
 function ButtonEqual(props){
 
   return (
-    <button 
-      onClick={props.onResultChange}
-      className='stylesOperator'>
-        {props.name}
-    </button>
+    <div 
+      onClick={props.onChange}
+      className='box'>
+        {props.name} 
+    </div>
   );
   
 }

@@ -6,8 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Calculator  
-          onClick={this.props.onClick}/>
+        <Calculator  />
       </div>
     );
   }

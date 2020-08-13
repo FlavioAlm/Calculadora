@@ -9,7 +9,7 @@ import './myStyles.css';
 
 
 class Calculator extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state={
       sequenceInput: '',
@@ -44,7 +44,7 @@ class Calculator extends Component {
     }
   }
 
-  handleOperatorChange(props) {
+  handleOperatorChange(props){
     let newInput = props.target.innerText;
     let oldSequence = this.state.sequenceInput;
     let lastInput = this.state.sequenceInput.slice(-1);
@@ -71,7 +71,7 @@ class Calculator extends Component {
     }
   }
 
-  handleResultChange() {
+  handleResultChange(){
     let result = 0;
     let firstNumber = parseInt(this.state.firstNumber);
     let secondNumber = parseInt(this.state.secondNumber);
@@ -102,7 +102,7 @@ class Calculator extends Component {
 
   }
 
-  handleReset() {
+  handleReset(){
     this.setState({sequenceInput: ''});
     this.setState({
       firstNumber: "0",
@@ -111,13 +111,14 @@ class Calculator extends Component {
     this.setState({result: 0});
   }
 
-  render() {
+  render(){
 
     return (
-      <div className>
-          <CalcName name={" Calculator"}/>
+      <div className="wrapper">
+          <CalcName 
+            name={"Calculator"} />
           <Display 
-            sequence={this.state.sequenceInput}/>
+            sequence={this.state.sequenceInput} />
 
           {[7, 8, 9].map(num => (
             <ButtonNumber 
@@ -126,9 +127,9 @@ class Calculator extends Component {
             onChange={this.handleNumberChange}/>
           ))}
           <ButtonDel 
+            key="C" 
             name="C"
-            onClick={this.handleReset} /> 
-            <br/>
+            onChange={this.handleReset} />
 
           {[4, 5, 6].map(num => (
             <ButtonNumber 
@@ -138,7 +139,7 @@ class Calculator extends Component {
           ))}
           <ButtonOperator 
             name="-" 
-            onChange={this.handleOperatorChange}/>  <br/>
+            onChange={this.handleOperatorChange}/>
 
           {[1, 2, 3].map(num => (
             <ButtonNumber
@@ -148,8 +149,7 @@ class Calculator extends Component {
           ))}
           <ButtonOperator 
             name="+" 
-            onChange={this.handleOperatorChange}/><br/>
-
+            onChange={this.handleOperatorChange}/>
 
           <ButtonOperator 
             name="×" 
@@ -162,7 +162,7 @@ class Calculator extends Component {
             onChange={this.handleOperatorChange}/>
           <ButtonEqual 
             name="="
-            onResultChange={this.handleResultChange}/>
+            onChange={this.handleResultChange}/>
       </div>
     );
   }

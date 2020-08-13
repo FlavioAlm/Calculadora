@@ -4,11 +4,11 @@ import './myStyles.css';
 function ButtonDel(props){
 
   return (
-    <button 
-      onClick={props.onClick} 
-      className='stylesDel'>
-        {props.name}
-    </button>
+    <div 
+      onClick={props.onChange}
+      className='box'>
+        {props.name} 
+    </div>
   );
   
 }

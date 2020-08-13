@@ -4,11 +4,11 @@ import './myStyles.css';
 function ButtonNumber(props){
 
   return (
-    <button 
+    <div 
       onClick={props.onChange}
-      className='stylesNumber'>
+      className='box'>
         {props.name} 
-    </button>
+    </div>
   );
 
 }

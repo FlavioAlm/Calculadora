@@ -4,11 +4,11 @@ import './myStyles.css';
 function ButtonOperator(props){
   
   return (
-    <button 
+    <div 
       onClick={props.onChange}
-      className='stylesOperator'>
-        {props.name}
-    </button>
+      className='box'>
+        {props.name} 
+    </div>
   );
 
 }

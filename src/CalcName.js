@@ -2,14 +2,7 @@ import React from 'react';
 import './myStyles.css';
 
 const CalcName = (props) => (
-    <div>
-      <input
-        readOnly 
-        type="text" 
-        value={props.name}
-        className='stylesName' />
-    </div>
-  
+    <div className="box1">{props.name}</div>
 );
 
 export default CalcName;
