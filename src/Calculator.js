@@ -9,7 +9,7 @@ import './myStyles.css';
 
 
 class Calculator extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state={
       sequenceInput: '',
@@ -44,7 +44,7 @@ class Calculator extends Component {
     }
   }
 
-  handleOperatorChange(props){
+  handleOperatorChange(props) {
     let newInput = props.target.innerText;
     let oldSequence = this.state.sequenceInput;
     let lastInput = this.state.sequenceInput.slice(-1);
@@ -71,7 +71,7 @@ class Calculator extends Component {
     }
   }
 
-  handleResultChange(){
+  handleResultChange() {
     let result = 0;
     let firstNumber = parseInt(this.state.firstNumber);
     let secondNumber = parseInt(this.state.secondNumber);
@@ -102,7 +102,7 @@ class Calculator extends Component {
 
   }
 
-  handleReset(){
+  handleReset() {
     this.setState({sequenceInput: ''});
     this.setState({
       firstNumber: "0",
@@ -111,7 +111,7 @@ class Calculator extends Component {
     this.setState({result: 0});
   }
 
-  render(){
+  render() {
 
     return (
       <div className>
@@ -127,7 +127,8 @@ class Calculator extends Component {
           ))}
           <ButtonDel 
             name="C"
-            onClick={this.handleReset} /> <br/>
+            onClick={this.handleReset} /> 
+            <br/>
 
           {[4, 5, 6].map(num => (
             <ButtonNumber 
