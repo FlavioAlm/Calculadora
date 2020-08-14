@@ -9,6 +9,7 @@ const Display = (props) => (
       value={props.sequence} 
       onChange={props.onChange}
       onKeyPress={props.onKeyPress}
+      placeholder="0"
     >
     </input> 
 );
