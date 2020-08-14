@@ -1,7 +1,7 @@
 import React from 'react';
-import './myStyles.css';
+import './ButtonEqual.css';
 
-function ButtonDel(props){
+function ButtonEqual(props){
 
   return (
     <div 
@@ -13,4 +13,4 @@ function ButtonDel(props){
   
 }
 
-export default ButtonDel;
+export default ButtonEqual;

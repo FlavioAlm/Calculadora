@@ -1,0 +1,27 @@
+.box2 {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  background-color: #F8D7F3;
+  font-size: 300%;
+  text-align: right;
+  color: rgb(24, 23, 23);
+  border: none;
+  border-radius: 5px;
+}
+
+@media (max-width: 300px) {
+  .box2 {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    background-color: #F8D7F3;
+    font-size: 100px;
+    text-align: right;
+    color: rgb(24, 23, 23);
+    border: none;
+    border-radius: 5px;
+  }
+}

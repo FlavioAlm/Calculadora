@@ -1,5 +1,5 @@
 import React from 'react';
-import './myStyles.css';
+import './CalcName.css';
 
 const CalcName = (props) => (
     <div className="box1">{props.name}</div>

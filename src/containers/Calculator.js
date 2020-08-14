@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Display from './Display';
-import ButtonEqual from './ButtonEqual';
-import ButtonOperator from './ButtonOperator';
-import ButtonDel from './ButtonDel.js'
-import ButtonNumber from './ButtonNumber';
-import CalcName from './CalcName';
-import './myStyles.css';
+import Display from '../components/display/Display.js';
+import ButtonEqual from '../components/buttonEqual/ButtonEqual.js';
+import ButtonOperator from '../components/buttonOperator/ButtonOperator.js';
+import ButtonDel from '../components/buttonDel/ButtonDel.js';
+import ButtonNumber from '../components/buttonNumber/ButtonNumber.js';
+import CalcName from '../components/calcName/CalcName.js';
+import './Calculator.css';
 
 
 class Calculator extends Component {

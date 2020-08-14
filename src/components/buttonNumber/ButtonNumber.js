@@ -1,11 +1,12 @@
 import React from 'react';
-import './myStyles.css';
+import './ButtonNumber.css';
 
-function ButtonOperator(props){
-  
+function ButtonNumber(props){
+
   return (
     <div 
       onClick={props.onChange}
+      onKeyPress={props.onKeyPress}
       className='box'>
         {props.name} 
     </div>
@@ -13,4 +14,4 @@ function ButtonOperator(props){
 
 }
 
-export default ButtonOperator;
+export default ButtonNumber;
