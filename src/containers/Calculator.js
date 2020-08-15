@@ -34,6 +34,7 @@ class Calculator extends Component {
   }
 
   handleChange(props) {
+    console.log("start handle: " + this.state.sequence);
     let oldSequence = this.state.sequence;
     let newSequence = '';
 
@@ -41,11 +42,19 @@ class Calculator extends Component {
       newSequence = safeEval(oldSequence);
     } else if (props === "C") {
       newSequence = '';
+    } else if (props === "⇽") {
+      console.log("oldSeq in <-: " + oldSequence)
+      newSequence = oldSequence.slice(0, -1);
+      console.log("newSeq in <-: " + newSequence)
+    } else if (props === "+/-") {
+      let oposite = (-1)*(parseInt(oldSequence));
+      newSequence = oposite.toString();
     } else { 
       newSequence = oldSequence + props;  
     }
 
     this.setState({sequence: newSequence});
+    console.log("end handle: " + this.state.sequence);
   }
 
   render(){
@@ -60,16 +69,29 @@ class Calculator extends Component {
             onChange={ null }
           />
 
+          <ButtonDel 
+            key="C" 
+            name="C"
+            onChange={this.handleClick} />
+          <ButtonOperator 
+            name="%" 
+            onChange={this.handleClick}/>
+          <ButtonOperator 
+            name="÷" 
+            onChange={this.handleClick}/>
+          <ButtonDel
+            name="⇽"
+            onChange={this.handleClick} />
+
           {[7, 8, 9].map(num => (
           <ButtonNumber 
             key={num} 
             name={num} 
             onChange={this.handleClick}/>
           ))}
-          <ButtonDel 
-            key="C" 
-            name="C"
-            onChange={this.handleClick} />
+          <ButtonOperator 
+            name="×" 
+            onChange={this.handleClick}/>
 
           {[4, 5, 6].map(num => (
             <ButtonNumber 
@@ -92,13 +114,13 @@ class Calculator extends Component {
             onChange={this.handleClick}/>
 
           <ButtonOperator 
-            name="×" 
+            name="+/-" 
             onChange={this.handleClick}/>
           <ButtonNumber 
             name="0" 
             onChange={this.handleClick}/>
           <ButtonOperator 
-            name="÷" 
+            name="." 
             onChange={this.handleClick}/>
           <ButtonEqual 
             name="="
