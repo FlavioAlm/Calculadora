@@ -4,7 +4,7 @@ import ButtonEqual from '../components/buttonEqual/ButtonEqual.js';
 import ButtonOperator from '../components/buttonOperator/ButtonOperator.js';
 import ButtonDel from '../components/buttonDel/ButtonDel.js';
 import ButtonNumber from '../components/buttonNumber/ButtonNumber.js';
-import CalcName from '../components/calcName/CalcName.js';
+//import CalcName from '../components/calcName/CalcName.js';
 import './Calculator.css';
 import safeEval from './utils.js';
 
@@ -60,9 +60,7 @@ class Calculator extends Component {
   render(){
 
     return (
-      <div className="wrapper">
-          <CalcName 
-            name={"Calculator"} />
+      <div className="calculator">
           <Display 
             sequence={this.state.sequence}
             onKeyPress={this.handleKeyPress}

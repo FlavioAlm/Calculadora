@@ -4,7 +4,7 @@ import './Display.css';
 const Display = (props) => (
 
     <input 
-      className="box2"
+      className="display"
       type="text"
       value={props.sequence} 
       onChange={props.onChange}
