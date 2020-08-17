@@ -1,15 +1,11 @@
 .display {
-  grid-column-start: 1;
-  grid-column-end: 5;
-  grid-row-start: 1;
-  grid-row-end: 3;
   background-color: #F8D7F3;
   font-size: 300%;
   text-align: right;
   border: none;
 }
 
-@media (max-width: 300px) {
+@media (min-width: 700px) {
   .display {
     grid-column-start: 1;
     grid-column-end: 5;

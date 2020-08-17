@@ -1,0 +1,18 @@
+
+.keyboard {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(75px, auto));
+  grid-template-rows: repeat(5, minmax(20px,auto));
+  gap: 1rem;
+} 
+.keyboard {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  background-color: #68045a;
+  vertical-align: middle;
+  border: none;
+}
+

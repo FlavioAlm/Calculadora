@@ -4,9 +4,9 @@ import './ButtonNumber.css';
 function ButtonNumber(props){
 
   return (
-    <div 
+    <div
+      key={props.id}  
       onClick={props.onChange}
-      onKeyPress={props.onKeyPress}
       className='box'>
         {props.name} 
     </div>

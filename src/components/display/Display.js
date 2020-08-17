@@ -2,7 +2,7 @@ import React from 'react';
 import './Display.css';
 
 const Display = (props) => (
-
+  
     <input 
       className="display"
       type="text"

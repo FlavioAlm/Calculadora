@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import Display from '../components/display/Display.js';
-import ButtonEqual from '../components/buttonEqual/ButtonEqual.js';
-import ButtonOperator from '../components/buttonOperator/ButtonOperator.js';
-import ButtonDel from '../components/buttonDel/ButtonDel.js';
-import ButtonNumber from '../components/buttonNumber/ButtonNumber.js';
-//import CalcName from '../components/calcName/CalcName.js';
+import Keyboard from './Keyboard.js';
 import './Calculator.css';
 import safeEval from './utils.js';
 
@@ -16,6 +12,8 @@ class Calculator extends Component {
     this.state={
       sequence:'',
     }
+    
+    this.keyboardCalculator = ["C", "%", "÷", "⇽", "7", "8", "9", "x", "4", "5", "6", "-",  "1", "2", "3", "+", "+/-", "0", ".", "=" ];
 
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -61,68 +59,17 @@ class Calculator extends Component {
 
     return (
       <div className="calculator">
-          <Display 
+          <Display
+            className="calc display" 
             sequence={this.state.sequence}
             onKeyPress={this.handleKeyPress}
             onChange={ null }
           />
-
-          <ButtonDel 
-            key="C" 
-            name="C"
-            onChange={this.handleClick} />
-          <ButtonOperator 
-            name="%" 
-            onChange={this.handleClick}/>
-          <ButtonOperator 
-            name="÷" 
-            onChange={this.handleClick}/>
-          <ButtonDel
-            name="⇽"
-            onChange={this.handleClick} />
-
-          {[7, 8, 9].map(num => (
-          <ButtonNumber 
-            key={num} 
-            name={num} 
-            onChange={this.handleClick}/>
-          ))}
-          <ButtonOperator 
-            name="×" 
-            onChange={this.handleClick}/>
-
-          {[4, 5, 6].map(num => (
-            <ButtonNumber 
-            key={num} 
-            name={num} 
-            onChange={this.handleClick}/>
-          ))}
-          <ButtonOperator 
-            name="-" 
-            onChange={this.handleClick}/>
-
-          {[1, 2, 3].map(num => (
-            <ButtonNumber
-            key={num} 
-            name={num} 
-            onChange={this.handleClick}/>
-          ))}
-          <ButtonOperator 
-            name="+" 
-            onChange={this.handleClick}/>
-
-          <ButtonOperator 
-            name="+/-" 
-            onChange={this.handleClick}/>
-          <ButtonNumber 
-            name="0" 
-            onChange={this.handleClick}/>
-          <ButtonOperator 
-            name="." 
-            onChange={this.handleClick}/>
-          <ButtonEqual 
-            name="="
-            onChange={this.handleClick}/>
+          <Keyboard
+            className="keyboard"  
+            keyboard={this.keyboardCalculator}         
+            onChange={this.handleClick}  
+          />
       </div>
     );
   }
