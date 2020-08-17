@@ -2,7 +2,14 @@
 
 function safeEval(sequence) {
 
-  let newSeq = numberSequenceToArray (sequence);
+  if (hasPercentage(sequence)) {
+    console.log(" if - HasPerc: " + hasPercentage(sequence));
+    sequence = normalizePercentage(sequence);
+  };
+  console.log("out - HasPerc: " + hasPercentage(sequence));
+  console.log("out - seq: " + (sequence));
+
+  let newSeq = numberSequenceToArray(sequence);
   let firstNumber = 0;
   let secondNumber = 0;
   let operator = '+';
@@ -42,6 +49,7 @@ function safeEval(sequence) {
 
 function calculate(firstNumber, operator, secondNumber) {
   let result = 0;
+  console.log("operator: " + operator);
 
   switch(operator) {
     case '+':
@@ -58,6 +66,7 @@ function calculate(firstNumber, operator, secondNumber) {
       break
     case '÷': 
       result = firstNumber / secondNumber
+      console.log("result in switch: " + result);
       break
     case '/': 
       result = firstNumber / secondNumber
@@ -65,6 +74,8 @@ function calculate(firstNumber, operator, secondNumber) {
     default:
         console.log("error!")
   }
+
+  console.log("result: " + result);
   return result.toPrecision(4)
 
 }
@@ -93,5 +104,68 @@ function numberSequenceToArray (string) {
   console.log("array: " + array)
   return array;
 }
+
+function hasPercentage(string) {
+  return string.includes("%");
+}
+
+function normalizePercentage(string) {
+
+  let newSeq = string;
+  console.log("before while - newSeq: " + newSeq);
+
+  while (newSeq.indexOf("%") !== -1) {
+    let newPartial = "";
+    let partialSeq = newSeq.slice(0, newSeq.indexOf("%")+1);
+    let endOfSeq = newSeq.slice(newSeq.indexOf("%")+1);
+
+    let percBlock = getPerc(partialSeq);
+    console.log("after - percBlock: " + percBlock);
+    console.log("after - partialSeq: " + partialSeq);
+    let seqSplit = partialSeq.split(percBlock);
+    console.log("after - seqSplit: " + seqSplit);
+    newPartial = seqSplit[0]+convertPerc(percBlock);
+
+    newSeq= newPartial + endOfSeq;
+    console.log("in while - newSeq: " + newSeq);
+  }
+
+  return newSeq;
+}
+
+function convertPerc(string) {
+
+  let pureNum = string.slice(1, -1);
+  let newStr = "";
+  let newPerc = "";
+
+  if (string[0]==="+") {
+    newStr = "100+"+pureNum+"/100"
+  } else {
+    newStr = "100-"+pureNum+"/100"   
+  }
+
+  newPerc = safeEval(newStr);
+  console.log("in conv - newPerc: " + newPerc);
+  return "×"+newPerc;
+}
+
+function getPerc(partial) {
+  let percBlock="";
+  console.log("start - newPartial: " + partial);
+  
+  let i = partial.length -2
+  do {
+    percBlock = partial[i] + percBlock;
+    i -= 1;
+  } while (!isNaN(partial[i]));
+
+  percBlock = partial[i]+percBlock + "%";
+  
+  console.log("end - newPartial: " + percBlock);
+  return percBlock;
+}
+
+
 
 export default safeEval;
