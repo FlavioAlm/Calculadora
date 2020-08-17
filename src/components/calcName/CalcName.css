@@ -3,11 +3,13 @@
   grid-column-end: 5;
   font-size: 150%;
   text-align: left;
+  vertical-align: middle;
 }
 
 @media (max-width: 300px) {
   .box1 {
     grid-column-start: 1;
     grid-column-end: 5;
+    vertical-align: middle;
   }
 }
