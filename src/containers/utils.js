@@ -6,8 +6,6 @@ function safeEval(sequence) {
     console.log(" if - HasPerc: " + hasPercentage(sequence));
     sequence = normalizePercentage(sequence);
   };
-  console.log("out - HasPerc: " + hasPercentage(sequence));
-  console.log("out - seq: " + (sequence));
 
   let newSeq = numberSequenceToArray(sequence);
   let firstNumber = 0;
@@ -16,8 +14,6 @@ function safeEval(sequence) {
 
   while (newSeq.length > 1) {
     if (!isNaN(newSeq[0]) || newSeq[0].includes(".")) {
-      console.log("start if-with: " + newSeq);
-      console.log(newSeq[0]);
       firstNumber = newSeq[0];
       operator = newSeq[1];
       secondNumber = newSeq[2];
@@ -26,7 +22,6 @@ function safeEval(sequence) {
 
       firstNumber = calculate(parseFloat(firstNumber), operator, parseFloat(secondNumber));
       newSeq.unshift(String(firstNumber));
-      console.log("end if-with: " + newSeq);
 
     } else {
       console.log("start else-with: " + newSeq);
@@ -41,15 +36,12 @@ function safeEval(sequence) {
     }
   }
 
-  console.log("seq final: " + newSeq);
-  console.log("resultado: " + newSeq.slice(-1));
   return String(newSeq[0]);
 
 };
 
 function calculate(firstNumber, operator, secondNumber) {
   let result = 0;
-  console.log("operator: " + operator);
 
   switch(operator) {
     case '+':
@@ -61,12 +53,14 @@ function calculate(firstNumber, operator, secondNumber) {
     case '×':
       result = firstNumber * secondNumber
       break
+    case 'x':
+      result = firstNumber * secondNumber
+      break
     case '*':
       result = firstNumber * secondNumber
       break
     case '÷': 
       result = firstNumber / secondNumber
-      console.log("result in switch: " + result);
       break
     case '/': 
       result = firstNumber / secondNumber
@@ -75,8 +69,7 @@ function calculate(firstNumber, operator, secondNumber) {
         console.log("error!")
   }
 
-  console.log("result: " + result);
-  return result.toPrecision(4)
+  return result.toPrecision(3)
 
 }
 
@@ -101,7 +94,6 @@ function numberSequenceToArray (string) {
     }
   }
   array.push(fullNumber);
-  console.log("array: " + array)
   return array;
 }
 

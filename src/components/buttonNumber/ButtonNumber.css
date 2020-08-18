@@ -1,13 +1,16 @@
 .box {
-  font-size: 25px;
-  font-weight: 600;
-  text-align: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
-@media (max-width: 300px) {
+@media (min-width: 700px) {
   .box {
     font-size: 25px;
     font-weight: 600;
     text-align: center;
+  }
+  .keyboard :hover {
+    background-color: #4bbd97;
   }
 }

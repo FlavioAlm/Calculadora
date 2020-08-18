@@ -13,7 +13,7 @@ class Calculator extends Component {
       sequence:'',
     }
     
-    this.keyboardCalculator = ["C", "%", "÷", "⇽", "7", "8", "9", "x", "4", "5", "6", "-",  "1", "2", "3", "+", "+/-", "0", ".", "=" ];
+    this.keyboardCalculator = ["C", "%", "÷", "⇽", "7", "8", "9", "×", "4", "5", "6", "-",  "1", "2", "3", "+", "+/-", "0", ".", "=" ];
 
     this.handleClick = this.handleClick.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -23,7 +23,6 @@ class Calculator extends Component {
   handleKeyPress(props) {
     let input = props.key
     this.handleChange(input)
-    console.log("input: " + input)
   }
 
   handleClick(props){
@@ -32,7 +31,6 @@ class Calculator extends Component {
   }
 
   handleChange(props) {
-    console.log("start handle: " + this.state.sequence);
     let oldSequence = this.state.sequence;
     let newSequence = '';
 
@@ -41,9 +39,7 @@ class Calculator extends Component {
     } else if (props === "C") {
       newSequence = '';
     } else if (props === "⇽") {
-      console.log("oldSeq in <-: " + oldSequence)
       newSequence = oldSequence.slice(0, -1);
-      console.log("newSeq in <-: " + newSequence)
     } else if (props === "+/-") {
       let oposite = (-1)*(parseInt(oldSequence));
       newSequence = oposite.toString();
@@ -52,7 +48,6 @@ class Calculator extends Component {
     }
 
     this.setState({sequence: newSequence});
-    console.log("end handle: " + this.state.sequence);
   }
 
   render(){
@@ -60,14 +55,14 @@ class Calculator extends Component {
     return (
       <div className="calculator">
           <Display
-            className="calc display" 
+            className="display" 
             sequence={this.state.sequence}
             onKeyPress={this.handleKeyPress}
             onChange={ null }
           />
           <Keyboard
             className="keyboard"  
-            keyboard={this.keyboardCalculator}         
+            keyboard={this.keyboardCalculator}
             onChange={this.handleClick}  
           />
       </div>
