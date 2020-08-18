@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Display from '../components/display/Display.js';
 import Keyboard from './Keyboard.js';
 import './Calculator.css';
-import safeEval from './utils.js';
+import calculateSeq from '../utils.js';
 
 
 class Calculator extends Component {
@@ -31,23 +31,10 @@ class Calculator extends Component {
   }
 
   handleChange(props) {
-    let oldSequence = this.state.sequence;
-    let newSequence = '';
+    let oldSeq = this.state.sequence;
 
-    if (props === "=" || props === "Enter") {
-      newSequence = safeEval(oldSequence);
-    } else if (props === "C") {
-      newSequence = '';
-    } else if (props === "⇽") {
-      newSequence = oldSequence.slice(0, -1);
-    } else if (props === "+/-") {
-      let oposite = (-1)*(parseInt(oldSequence));
-      newSequence = oposite.toString();
-    } else { 
-      newSequence = oldSequence + props;  
-    }
-
-    this.setState({sequence: newSequence});
+    let newSeq = calculateSeq(oldSeq, props);
+    this.setState({sequence: newSeq});
   }
 
   render(){
@@ -57,7 +44,7 @@ class Calculator extends Component {
           <Display
             className="display" 
             sequence={this.state.sequence}
-            onKeyPress={this.handleKeyPress}
+            onKeyDown={this.handleKeyPress}
             onChange={ null }
           />
           <Keyboard

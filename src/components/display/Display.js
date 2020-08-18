@@ -8,7 +8,7 @@ const Display = (props) => (
       type="text"
       value={props.sequence} 
       onChange={props.onChange}
-      onKeyPress={props.onKeyPress}
+      onKeyDown={props.onKeyDown}
       placeholder="0"
     >
     </input> 

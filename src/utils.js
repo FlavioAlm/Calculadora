@@ -1,9 +1,53 @@
 
+function calculateSeq(sequence, input) {
+
+  let oldSeq = sequence;
+  let lastInput = input;
+
+  let lastElem = sequence.slice(-1);
+  let seqLeng = sequence.length;
+  let newSeq = '';
+  const validChars = ["C", "%", "÷", "/", "⇽", "Backspace", "7", "8", "9", "×", "x", "*", "4", "5", "6", "-",  "1", "2", "3", "+", "+/-", "0", ".", "=", "Enter"]
+  const OperatorList = ["%", "÷", "*", "×", "-", "+", "x", "/"];
+  const specialChar = ["C", "Backspace", "Enter", "⇽", "="];
+
+  let lastElemIsOperator = OperatorList.includes(lastElem);
+  let inputIsOperator = OperatorList.includes(lastInput);
+
+  if (isValidInput(lastInput)) {
+    if (lastInput === "=" || lastInput === "Enter") {
+      newSeq = safeEval(oldSeq);
+    } else if (lastInput === "C") {
+      newSeq = '';
+    } else if (lastInput === "⇽" || lastInput === "Backspace") {
+      newSeq = oldSeq.slice(0, -1);
+    } else if (lastInput === "+/-") {
+      let oposite = (-1)*(parseInt(oldSeq));
+      newSeq = oposite.toString();
+    } else if ((inputIsOperator) && (lastElemIsOperator)) {
+      newSeq = oldSeq.slice(0, -1) + lastInput;
+    } else {
+      newSeq = oldSeq + lastInput;  
+    }
+  } else {
+    newSeq = oldSeq;  
+  }
+
+  function isValidInput(input) {
+   let valid =  (specialChar.includes(input)) ? true : (seqLeng < 10)&&(validChars.includes(input));
+
+    return valid;
+  }
+
+  return newSeq;
+}
+
+
+
 
 function safeEval(sequence) {
 
   if (hasPercentage(sequence)) {
-    console.log(" if - HasPerc: " + hasPercentage(sequence));
     sequence = normalizePercentage(sequence);
   };
 
@@ -20,19 +64,16 @@ function safeEval(sequence) {
 
       newSeq = newSeq.slice(3);
 
-      firstNumber = calculate(parseFloat(firstNumber), operator, parseFloat(secondNumber));
+      firstNumber = calculate(firstNumber, operator, secondNumber);
       newSeq.unshift(String(firstNumber));
 
     } else {
-      console.log("start else-with: " + newSeq);
-      console.log(newSeq[0]);
       operator = newSeq[0];
       secondNumber = newSeq[1];
       newSeq = newSeq.slice(2);
 
       firstNumber = calculate(parseFloat(firstNumber), operator, parseFloat(secondNumber));
       newSeq.unshift(String(firstNumber));
-      console.log("end else-with: " + newSeq);
     }
   }
 
@@ -41,7 +82,12 @@ function safeEval(sequence) {
 };
 
 function calculate(firstNumber, operator, secondNumber) {
+
+
   let result = 0;
+
+  firstNumber = isFloat(firstNumber) ? parseFloat(firstNumber) : parseInt(firstNumber);
+  secondNumber = isFloat(secondNumber) ? parseFloat(secondNumber) : parseInt(secondNumber);
 
   switch(operator) {
     case '+':
@@ -69,8 +115,11 @@ function calculate(firstNumber, operator, secondNumber) {
         console.log("error!")
   }
 
-  return result.toPrecision(3)
+  let isResultFloat = (isFloat(firstNumber.toString()) || isFloat(secondNumber.toString()));
 
+
+  let finalResult = isResultFloat ? result.toPrecision(3) : result;
+  return finalResult;
 }
 
 function numberSequenceToArray (string) {
@@ -101,10 +150,13 @@ function hasPercentage(string) {
   return string.includes("%");
 }
 
+function isFloat(string) {
+  return string.includes(".")
+}
+
 function normalizePercentage(string) {
 
   let newSeq = string;
-  console.log("before while - newSeq: " + newSeq);
 
   while (newSeq.indexOf("%") !== -1) {
     let newPartial = "";
@@ -112,14 +164,10 @@ function normalizePercentage(string) {
     let endOfSeq = newSeq.slice(newSeq.indexOf("%")+1);
 
     let percBlock = getPerc(partialSeq);
-    console.log("after - percBlock: " + percBlock);
-    console.log("after - partialSeq: " + partialSeq);
     let seqSplit = partialSeq.split(percBlock);
-    console.log("after - seqSplit: " + seqSplit);
     newPartial = seqSplit[0]+convertPerc(percBlock);
 
     newSeq= newPartial + endOfSeq;
-    console.log("in while - newSeq: " + newSeq);
   }
 
   return newSeq;
@@ -138,13 +186,11 @@ function convertPerc(string) {
   }
 
   newPerc = safeEval(newStr);
-  console.log("in conv - newPerc: " + newPerc);
   return "×"+newPerc;
 }
 
 function getPerc(partial) {
   let percBlock="";
-  console.log("start - newPartial: " + partial);
   
   let i = partial.length -2
   do {
@@ -154,10 +200,8 @@ function getPerc(partial) {
 
   percBlock = partial[i]+percBlock + "%";
   
-  console.log("end - newPartial: " + percBlock);
   return percBlock;
 }
 
 
-
-export default safeEval;
+export default calculateSeq;
