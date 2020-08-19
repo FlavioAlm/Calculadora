@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Display from '../components/display/Display.js';
-import Keyboard from './Keyboard.js';
+import KeyboardRender from './KeyboardRender.js';
 import './Calculator.css';
 import calculateSeq from '../utils.js';
 
@@ -45,9 +45,8 @@ class Calculator extends Component {
             className="display" 
             sequence={this.state.sequence}
             onKeyDown={this.handleKeyPress}
-            onChange={ null }
           />
-          <Keyboard
+          <KeyboardRender
             className="keyboard"  
             keyboard={this.keyboardCalculator}
             onChange={this.handleClick}  

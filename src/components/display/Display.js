@@ -7,7 +7,7 @@ const Display = (props) => (
       className="display"
       type="text"
       value={props.sequence} 
-      onChange={props.onChange}
+      onChange={ null}
       onKeyDown={props.onKeyDown}
       placeholder="0"
     >

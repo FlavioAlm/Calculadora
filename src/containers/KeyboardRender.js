@@ -1,14 +1,14 @@
 import React from 'react';
-import ButtonNumber from '../components/buttonNumber/ButtonNumber.js';
+import Button from '../components/button/Button.js';
 
 
-function Keyboard(props){
+function KeyboardRender(props){
 
   let keyboad = props.keyboard;
 
   let calculatorButtons = keyboad.map((key, id) =>{
     return (
-      <ButtonNumber 
+      <Button 
         key={id} 
         name={key} 
         onChange={props.onChange} 
@@ -23,4 +23,4 @@ function Keyboard(props){
   
 }
 
-export default Keyboard;
+export default KeyboardRender;

@@ -1,7 +1,7 @@
 import React from 'react';
-import './ButtonNumber.css';
+import './Button.css';
 
-function ButtonNumber(props){
+function Button(props){
 
   return (
     <div
@@ -14,4 +14,4 @@ function ButtonNumber(props){
 
 }
 
-export default ButtonNumber;
+export default Button;
