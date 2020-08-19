@@ -1,8 +1,9 @@
 
-function calculateSeq(sequence, input) {
+function calculateSeq(sequence, input, result) {
 
   let oldSeq = sequence;
   let lastInput = input;
+  let newRes = result;
 
   let lastElem = sequence.slice(-1);
   let seqLeng = sequence.length;
@@ -17,8 +18,10 @@ function calculateSeq(sequence, input) {
   if (isValidInput(lastInput)) {
     if (lastInput === "=" || lastInput === "Enter") {
       newSeq = safeEval(oldSeq);
+      newRes = newSeq;
     } else if (lastInput === "C") {
       newSeq = '';
+      newRes = '0';
     } else if (lastInput === "⇽" || lastInput === "Backspace") {
       newSeq = oldSeq.slice(0, -1);
     } else if (lastInput === "+/-") {
@@ -39,7 +42,7 @@ function calculateSeq(sequence, input) {
     return valid;
   }
 
-  return newSeq;
+  return [newSeq, newRes];
 }
 
 

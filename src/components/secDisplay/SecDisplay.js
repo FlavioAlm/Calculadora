@@ -1,10 +1,9 @@
 import React from 'react';
-import './Display.css';
+import './SecDisplay.css';
 
-const Display = (props) => (
-  
+const SecDisplay = (props) => (
     <input 
-      className="display"
+      className="secDisplay"
       type="text"
       value={props.sequence} 
       onChange={ null}
@@ -14,4 +13,4 @@ const Display = (props) => (
     </input> 
 );
 
-export default Display;
+export default SecDisplay;

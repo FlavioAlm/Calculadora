@@ -16,7 +16,7 @@ function KeyboardRender(props){
   });
 
   return (
-    <div className="keyboard">
+    <div className="keyboardRender">
       {calculatorButtons} 
     </div>
   );

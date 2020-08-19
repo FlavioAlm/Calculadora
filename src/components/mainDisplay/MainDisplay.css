@@ -1,0 +1,9 @@
+.mainDisplay {
+  display: grid;
+  align-self: flex-start;
+  background-color: #F8D7F3;
+  font-size: 65px;
+  text-align: right;
+  border: none;
+  padding: 5px;
+}

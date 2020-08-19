@@ -5,10 +5,11 @@ function Button(props){
 
   return (
     <div
+      className='box'
       key={props.id}  
       onClick={props.onChange}
-      className='box'>
-        {props.name} 
+    >
+      {props.name} 
     </div>
   );
 
