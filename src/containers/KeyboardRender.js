@@ -1,24 +1,19 @@
 import React from 'react';
 import Button from '../components/button/Button.js';
 
-
-function KeyboardRender(props){
-
-  let keyboad = props.keyboard;
-
-  let calculatorButtons = keyboad.map((key, id) =>{
-    return (
-      <Button 
-        key={id} 
-        name={key} 
-        onChange={props.onChange} 
-      />)
-  });
+function KeyboardRender({keyboard, onChange}){
+  const calculatorButtons = keyboard.map((key, id) =>
+    <Button 
+      key={id} 
+      name={key} 
+      onChange={onChange} 
+    />
+  )
 
   return (
-    <div className="keyboardRender">
+    <section className="keyboardRender">
       {calculatorButtons} 
-    </div>
+    </section>
   );
   
 }

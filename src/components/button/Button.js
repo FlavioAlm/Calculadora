@@ -1,18 +1,13 @@
 import React from 'react';
 import './Button.css';
 
-function Button(props){
-
-  return (
-    <div
+const Button = ({id, onChange, name}) => 
+    <button
       className='box'
-      key={props.id}  
-      onClick={props.onChange}
+      key={id}  
+      onClick={onChange}
     >
-      {props.name} 
-    </div>
-  );
-
-}
+      {name} 
+    </button>
 
 export default Button;

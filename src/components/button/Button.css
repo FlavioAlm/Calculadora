@@ -1,16 +1,11 @@
 .box {
-  display: grid;
-  justify-content: center;
-  align-items: center;
+  border: none;
+  font-size: 25px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background-color: #68045a;
 }
-
-@media (min-width: 700px) {
-  .box {
-    font-size: 25px;
-    font-weight: 600;
-    text-align: center;
-  }
-  .keyboard :hover {
-    background-color: #4bbd97;
-  }
+.keyboard :hover {
+  background-color: #4bbd97;
 }

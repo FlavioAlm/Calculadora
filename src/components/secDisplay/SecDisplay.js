@@ -1,16 +1,16 @@
 import React from 'react';
 import './SecDisplay.css';
 
-const SecDisplay = (props) => (
+const SecDisplay = React.forwardRef( ({sequence, onKeyDown}, ref) => 
     <input 
       className="secDisplay"
       type="text"
-      value={props.sequence} 
-      onChange={ null}
-      onKeyDown={props.onKeyDown}
+      value={sequence} 
+      onKeyDown={onKeyDown}
       placeholder="0"
+      ref={ref}
     >
     </input> 
-);
+)
 
 export default SecDisplay;

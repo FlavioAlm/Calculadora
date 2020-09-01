@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import KeyboardRender from './KeyboardRender.js';
 import DisplayRender from './DisplayRender.js';
 import calculateSeq from '../utils.js';
@@ -11,7 +11,9 @@ class Calculator extends Component {
     this.state={
       sequence:'',
       result: ''
-    }
+    };
+
+    this.inputRef = createRef();
     this.keyboardCalculator = ["C", "%", "÷", "⇽", "7", "8", "9", "×", "4", "5", "6", "-",  "1", "2", "3", "+", "+/-", "0", ".", "=" ];
 
     this.handleClick = this.handleClick.bind(this);
@@ -19,38 +21,42 @@ class Calculator extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleKeyDown(props) {
-    let input = props.key
-    this.handleChange(input)
+  componentDidMount() {
+    this.inputRef.current.focus();
   }
 
-  handleClick(props){
-    let input = props.target.innerText;
-    this.handleChange(input)
+  handleKeyDown({key}) {
+    this.handleChange(key)
+  }
+
+  handleClick({target}){
+    this.handleChange(target.innerText)
   }
 
   handleChange(props) {
-    let oldSeq = this.state.sequence;
-    let oldRes = this.state.result;
-    let [newSeq, newRes] = calculateSeq(oldSeq, props, oldRes);
-    this.setState({sequence: newSeq});
-    this.setState({result: newRes});
+    const { sequence, result } = this.state
+    const [oldSeq, oldRes] = [sequence, result] 
+    const [newSeq, newRes] = calculateSeq(oldSeq, props, oldRes);
+    this.setState({sequence: newSeq, result: newRes});
   }
 
   render(){
+    const { sequence, result} = this.state
+    const { handleKeyDown, inputRef, keyboardCalculator, handleClick} = this
 
     return (
-      <div className="calculator">
+      <main className="calculator">
           <DisplayRender
-            sequence = {this.state.sequence}
-            result = {this.state.result}
-            onKeyDown = {this.handleKeyDown}
+            sequence = {sequence}
+            result = {result}
+            onKeyDown = {handleKeyDown}
+            ref={inputRef}
           />
           <KeyboardRender 
-            keyboard = {this.keyboardCalculator}
-            onChange = {this.handleClick}  
+            keyboard = {keyboardCalculator}
+            onChange = {handleClick}  
           />
-      </div>
+      </main>
     );
   }
 

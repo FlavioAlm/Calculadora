@@ -45,9 +45,6 @@ function calculateSeq(sequence, input, result) {
   return [newSeq, newRes];
 }
 
-
-
-
 function safeEval(sequence) {
 
   if (hasPercentage(sequence)) {
@@ -85,8 +82,6 @@ function safeEval(sequence) {
 };
 
 function calculate(firstNumber, operator, secondNumber) {
-
-
   let result = 0;
 
   firstNumber = isFloat(firstNumber) ? parseFloat(firstNumber) : parseInt(firstNumber);

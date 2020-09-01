@@ -1,10 +1,12 @@
-import React from 'react';
-import './MainDisplay.css';
+import React from 'react'
+import './MainDisplay.css'
 
-const MainDisplay = (props) => (
-    <div className="mainDisplay">
-      {props.result} 
-    </div> 
-);
+const MainDisplay = ({result}) => 
+    <input 
+      className="mainDisplay"
+      value={result}  
+      placeholder="0"
+    >
+    </input> 
 
 export default MainDisplay;
